@@ -921,47 +921,241 @@
       <Charset>utf8mb4</Charset>
       <DefaultForCharset>0</DefaultForCharset>
     </collation>
-    <table id="232" parent="6" name="users"/>
-    <column id="233" parent="232" name="ID">
+    <table id="232" parent="6" name="book"/>
+    <table id="233" parent="6" name="orders"/>
+    <table id="234" parent="6" name="users"/>
+    <column id="235" parent="232" name="ID">
       <Position>1</Position>
-      <Comment>用户编号</Comment>
+      <Comment>书籍编号</Comment>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>0</DefaultExpression>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="236" parent="232" name="Name">
+      <Position>2</Position>
+      <Comment>书名</Comment>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;&apos;</DefaultExpression>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="237" parent="232" name="Author">
+      <Position>3</Position>
+      <Comment>作者</Comment>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;&apos;</DefaultExpression>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="238" parent="232" name="Language">
+      <Position>4</Position>
+      <Comment>语言（1为中文，2为英文）</Comment>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="234" parent="232" name="Logname">
+    <column id="239" parent="232" name="Category">
+      <Position>5</Position>
+      <Comment>所属类型（1为计算机类，2为英语类，3为其他）</Comment>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="240" parent="232" name="Cdrom">
+      <Position>6</Position>
+      <Comment>是否含盘（1为含，2为不含）</Comment>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="241" parent="232" name="Commend">
+      <Position>7</Position>
+      <Comment>推荐程度（1为好，2为较好，3为一般，4为较差）</Comment>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="242" parent="232" name="Content">
+      <Position>8</Position>
+      <Comment>内容简介</Comment>
+      <DataType>text|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="243" parent="232" name="Price">
+      <Position>9</Position>
+      <Comment>价格</Comment>
+      <DataType>float|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="244" parent="232" name="On_Sale_Time">
+      <Position>10</Position>
+      <Comment>上架时间</Comment>
+      <DataType>date|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="245" parent="232" name="Good_Price">
+      <Position>11</Position>
+      <Comment>是否打折（1为打折，2为不打）</Comment>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="246" parent="232" name="Publish_name">
+      <Position>12</Position>
+      <Comment>出版社名称</Comment>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="247" parent="232" name="Publish_address">
+      <Position>13</Position>
+      <Comment>出版社地址</Comment>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="248" parent="232" name="Book_Num">
+      <Position>14</Position>
+      <Comment>库存量</Comment>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="249" parent="232" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>ID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="250" parent="233" name="ID">
+      <Position>1</Position>
+      <Comment>订单编号</Comment>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>0</DefaultExpression>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="251" parent="233" name="User_name">
       <Position>2</Position>
       <Comment>用户名</Comment>
       <DataType>varchar(64)|0s</DataType>
       <NotNull>1</NotNull>
+      <DefaultExpression>&apos;&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="235" parent="232" name="Password">
+    <column id="252" parent="233" name="User_address">
+      <Position>3</Position>
+      <Comment>送货地址</Comment>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;&apos;</DefaultExpression>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="253" parent="233" name="User_tel">
+      <Position>4</Position>
+      <Comment>用户电话</Comment>
+      <DataType>varchar(64)|0s</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;&apos;</DefaultExpression>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="254" parent="233" name="User_CID">
+      <Position>5</Position>
+      <Comment>身份证号</Comment>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>0</DefaultExpression>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="255" parent="233" name="Book_id">
+      <Position>6</Position>
+      <Comment>订购书的id</Comment>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>0</DefaultExpression>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="256" parent="233" name="Book_number">
+      <Position>7</Position>
+      <Comment>订购书的数量</Comment>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>1</DefaultExpression>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="257" parent="233" name="Status">
+      <Position>8</Position>
+      <Comment>订单是否被处理（0表示未被处理，1表示已被处理）</Comment>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>0</DefaultExpression>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="258" parent="233" name="Goods_price">
+      <Position>9</Position>
+      <Comment>单价</Comment>
+      <DataType>float|0s</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>0</DefaultExpression>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="259" parent="233" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>ID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="260" parent="234" name="ID">
+      <Position>1</Position>
+      <Comment>用户编号</Comment>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>0</DefaultExpression>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="261" parent="234" name="Logname">
+      <Position>2</Position>
+      <Comment>用户名</Comment>
+      <DataType>varchar(64)|0s</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;&apos;</DefaultExpression>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="262" parent="234" name="Password">
       <Position>3</Position>
       <Comment>密码</Comment>
       <DataType>varchar(64)|0s</DataType>
       <NotNull>1</NotNull>
+      <DefaultExpression>&apos;&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="236" parent="232" name="Email">
+    <column id="263" parent="234" name="Email">
       <Position>4</Position>
       <Comment>邮件地址</Comment>
       <DataType>varchar(64)|0s</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="237" parent="232" name="Gender">
+    <column id="264" parent="234" name="Gender">
       <Position>5</Position>
       <Comment>性别（1为男性，2为女性）</Comment>
       <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>1</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="238" parent="232" name="Selfinfo">
+    <column id="265" parent="234" name="Selfinfo">
       <Position>6</Position>
       <Comment>自我介绍</Comment>
-      <DataType>text|0s</DataType>
+      <DataType>varchar(0)|0s</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="239" parent="232" name="Admin">
+    <column id="266" parent="234" name="Admin">
       <Position>7</Position>
       <Comment>是否为管理员（1为是，0为否，默认为0）</Comment>
       <DataType>int(10) unsigned zerofill|0s</DataType>
@@ -969,7 +1163,7 @@
       <DefaultExpression>0</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="240" parent="232" name="PRIMARY">
+    <key id="267" parent="234" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID</ColNames>
       <Primary>1</Primary>
