@@ -953,6 +953,7 @@
       <Comment>语言（1为中文，2为英文）</Comment>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
+      <DefaultExpression>1</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="239" parent="232" name="Category">
@@ -960,6 +961,7 @@
       <Comment>所属类型（1为计算机类，2为英语类，3为其他）</Comment>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
+      <DefaultExpression>1</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="240" parent="232" name="Cdrom">
@@ -967,6 +969,7 @@
       <Comment>是否含盘（1为含，2为不含）</Comment>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
+      <DefaultExpression>2</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="241" parent="232" name="Commend">
@@ -974,13 +977,15 @@
       <Comment>推荐程度（1为好，2为较好，3为一般，4为较差）</Comment>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
+      <DefaultExpression>1</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="242" parent="232" name="Content">
       <Position>8</Position>
       <Comment>内容简介</Comment>
-      <DataType>text|0s</DataType>
+      <DataType>varchar(0)|0s</DataType>
       <NotNull>1</NotNull>
+      <DefaultExpression>&apos;&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="243" parent="232" name="Price">
@@ -988,6 +993,7 @@
       <Comment>价格</Comment>
       <DataType>float|0s</DataType>
       <NotNull>1</NotNull>
+      <DefaultExpression>0</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="244" parent="232" name="On_Sale_Time">
@@ -1002,6 +1008,7 @@
       <Comment>是否打折（1为打折，2为不打）</Comment>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
+      <DefaultExpression>2</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="246" parent="232" name="Publish_name">
@@ -1009,6 +1016,7 @@
       <Comment>出版社名称</Comment>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
+      <DefaultExpression>&apos;&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="247" parent="232" name="Publish_address">
@@ -1016,6 +1024,7 @@
       <Comment>出版社地址</Comment>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
+      <DefaultExpression>&apos;&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="248" parent="232" name="Book_Num">
@@ -1023,6 +1032,7 @@
       <Comment>库存量</Comment>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
+      <DefaultExpression>0</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
     <key id="249" parent="232" name="PRIMARY">

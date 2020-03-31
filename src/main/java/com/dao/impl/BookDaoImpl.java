@@ -23,10 +23,10 @@ public class BookDaoImpl implements BookDao {
     //添加书籍
     public void addBook(Book book){
         try{
-            QueryRunner runner = new QueryRunner(JDBCUtil.getDataSource());
+            QueryRunner queryRunner = new QueryRunner(JDBCUtil.getDataSource());
             String sql = "insert into book(ID, Name, Author, Language, Category, Cdrom, Commend, Content, Price, On_Sale_Time, Good_Price, Publish_name, Publish_address, Book_Num) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             Object param[] = {book.getId(), book.getName(), book.getAuthor(), book.getLanguage(), book.getCategory(), book.getCdrom(), book.getCommend(), book.getContent(), book.getPrice(), book.getOnSaleTime(), book.getGoodPrice(), book.getPublishName(), book.getPublishAddress(), book.getBookNum()};
-            runner.update(sql, param);
+            queryRunner.update(sql, param);
 
         }  catch (SQLException e){
             e.printStackTrace();
@@ -36,26 +36,70 @@ public class BookDaoImpl implements BookDao {
 
     //按id查找书籍
     public Book findBookByID(String id){
-        Book book = new Book();
-
-        return book;
+        try {
+            QueryRunner queryRunner = new QueryRunner(JDBCUtil.getDataSource());
+            String sql = "select * from book where ID = ?";
+            return queryRunner.query(sql, id, new BeanHandler<Book>(Book.class));
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
     }
 
     //按书名查找书籍
     public List<Book> findBookByName(String name){
-        List<Book> bookList = new ArrayList<Book>();
-
-        return bookList;
+        try {
+            QueryRunner queryRunner = new QueryRunner(JDBCUtil.getDataSource());
+            String sql = "select * from book where Name = ?";
+            return queryRunner.query(sql, name, new BeanListHandler<Book>(Book.class));
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
 
     }
 
     //按作者查找书籍
     public List<Book> findBookByAuthor(String author){
-        List<Book> bookList = new ArrayList<Book>();
-
-        return bookList;
+        try {
+            QueryRunner queryRunner = new QueryRunner(JDBCUtil.getDataSource());
+            String sql = "select * from book where Author = ?";
+            return queryRunner.query(sql, author, new BeanListHandler<Book>(Book.class));
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
 
     }
+
+    //删除书籍
+    public void deleteBook(String id) {
+        try {
+            QueryRunner queryRunner = new QueryRunner(JDBCUtil.getDataSource());
+            String sql = "delete from book where ID = ?";
+            queryRunner.update(sql,id);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    //更新书籍
+    public  void updateBook(String id, Book book) {
+
+        try{
+            QueryRunner queryRunner = new QueryRunner(JDBCUtil.getDataSource());
+            String sql = "update book set Name=?, Author=?, Language=?, Category=?, Cdrom=?, Commend=?, Content=?, Price=?, On_Sale_Time=?, Good_Price=?, Publish_name=?, Publish_address=?, Book_Num=? where id = " + id;
+            Object param[] = {book.getName(), book.getAuthor(), book.getLanguage(), book.getCategory(), book.getCdrom(), book.getCommend(), book.getContent(), book.getPrice(), book.getOnSaleTime(), book.getGoodPrice(), book.getPublishName(), book.getPublishAddress(), book.getBookNum()};
+            queryRunner.update(sql, param);
+
+        }  catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+
 
 
 

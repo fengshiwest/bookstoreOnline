@@ -15,11 +15,16 @@ public interface BookDao {
     Book findBookByID(String id);
 
     //按书名查找书籍
-    public List<Book> findBookByName(String name);
+    List<Book> findBookByName(String name);
 
     //按作者查找书籍
-    public List<Book> findBookByAuthor(String author);
+    List<Book> findBookByAuthor(String author);
 
+    //删除书籍
+    void deleteBook(String id);
+
+    //更新书籍信息
+    void updateBook(String id, Book book);
 
 
 

@@ -11,7 +11,7 @@ public class Book {
   private long commend;
   private String content;
   private double price;
-  private java.sql.Date onSaleTime;
+  private String onSaleTime;
   private long goodPrice;
   private String publishName;
   private String publishAddress;
@@ -99,11 +99,11 @@ public class Book {
   }
 
 
-  public java.sql.Date getOnSaleTime() {
+  public String getOnSaleTime() {
     return onSaleTime;
   }
 
-  public void setOnSaleTime(java.sql.Date onSaleTime) {
+  public void setOnSaleTime(String onSaleTime) {
     this.onSaleTime = onSaleTime;
   }
 
