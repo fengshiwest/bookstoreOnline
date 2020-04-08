@@ -10,7 +10,7 @@ import java.util.List;
 public interface OrderDao {
 
     //添加订单
-    void addOrder(Orders orders);
+    void createOrder(Orders orders);
 
     //查询订单按编号
     Orders findOrderByID(String id);

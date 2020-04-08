@@ -15,5 +15,9 @@
 
 <a href="test.jsp">测试</a>
 
+<a href="query.jsp">查询</a>
+
+<a href="add.jsp">添加</a>
+
 </body>
 </html>

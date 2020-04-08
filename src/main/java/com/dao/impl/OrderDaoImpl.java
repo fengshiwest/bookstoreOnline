@@ -15,7 +15,7 @@ import java.util.List;
  */
 public class OrderDaoImpl implements OrderDao {
 
-    public void addOrder(Orders orders) {
+    public void createOrder(Orders orders) {
 
         try{
             QueryRunner queryRunner = new QueryRunner(JDBCUtil.getDataSource());

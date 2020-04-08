@@ -1,6 +1,9 @@
 package com.service;
 
 import com.pojo.Book;
+import com.pojo.Cart;
+import com.pojo.Orders;
+import com.pojo.Users;
 
 import java.util.List;
 
@@ -10,15 +13,15 @@ import java.util.List;
  */
 public interface OrderService {
 
-    //添加书
-    void addBook(Book book);
+    //添加书籍到购物车
+    void addBookToCart(Cart cart, Book book);
 
-    //查询书
-    Book findBookByID(String id);
+    //从购物车移出书籍
+    void deleteBookFromCart(Cart cart, Book book);
 
-    List<Book> findBookByName(String name);
+    //生成订单
+    void createOrder(Orders orders);
 
-    List<Book> findBookByAuthor(String author);
 
 
 
