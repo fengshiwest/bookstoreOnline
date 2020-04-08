@@ -12,7 +12,7 @@ import java.io.IOException;
 /**
  * Created by Wan Yu on 2020/4/8
  */
-public class CreatOrderServlet extends HttpServlet {
+public class UpdateOrderBookNumServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -22,42 +22,26 @@ public class CreatOrderServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
-        createOrder(req, resp);
-        doGet(req,resp);
-
-    }
-
-    private void createOrder(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        resp.setContentType("text/json;charset=UTF-8");
 
         try {
-            response.setContentType("text/json;charset=UTF-8");
-            response.setCharacterEncoding("UTF-8");
 
-            String orderID = request.getParameter("orderID");
-            String userAddress = request.getParameter("userAddress");
-            String userTel = request.getParameter("userTel");
-
-            if(userAddress.equals("") || userTel.equals("")){
-                System.out.println("请完善订单信息！");
-                return;
-            }
+            String orderID = req.getParameter("OrderID");
+            int bookNum = Integer.parseInt(req.getParameter("BookNum"));
 
             OrderServiceImpl orderService = new OrderServiceImpl();
             Orders order = orderService.findOrderByID(orderID);
+            orderService.changeBookNum(order,bookNum);
 
-            orderService.createOrder(order,userAddress, userTel);
-            System.out.println("订单生成成功");
-
+            System.out.println("已更新该订单");
             //response.sendError(200,"{\"message\":\"success\"}");
 
         } catch (Exception e) {
             e.printStackTrace();
             //response.sendError(200,"{\"message\":\"fail\"}");
-            System.out.println("订单生成失败");
+            System.out.println("更新该订单失败");
         }
+
+        doGet(req,resp);
     }
-
-
-
-
 }

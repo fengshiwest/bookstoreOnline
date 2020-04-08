@@ -3,6 +3,8 @@ package com.dao.impl;
 import com.dao.UserDao;
 import com.pojo.Users;
 import com.utils.JDBCUtil;
+import org.apache.commons.dbutils.BasicRowProcessor;
+import org.apache.commons.dbutils.GenerousBeanProcessor;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 
@@ -30,7 +32,7 @@ public class UserDaoImpl implements UserDao {
             QueryRunner queryRunner = new QueryRunner(JDBCUtil.getDataSource());
             String sql = "select * from users where ID = ? and Password = ?";
             Object params[] = {id, password};
-            return queryRunner.query(sql, params, new BeanHandler<Users>(Users.class));
+            return queryRunner.query(sql, new BeanHandler<Users>(Users.class, new BasicRowProcessor(new GenerousBeanProcessor())),params);
         } catch (SQLException e) {
             e.printStackTrace();
             throw new RuntimeException(e);
@@ -41,7 +43,7 @@ public class UserDaoImpl implements UserDao {
         try {
             QueryRunner queryRunner = new QueryRunner(JDBCUtil.getDataSource());
             String sql = "select * from users where ID = ?";
-            return queryRunner.query(sql, id, new BeanHandler<Users>(Users.class));
+            return queryRunner.query(sql,new BeanHandler<Users>(Users.class, new BasicRowProcessor(new GenerousBeanProcessor())),id);
         } catch (SQLException e) {
             e.printStackTrace();
             throw new RuntimeException(e);

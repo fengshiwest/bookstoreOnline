@@ -17,7 +17,11 @@
 
 <a href="query.jsp">查询</a>
 
-<a href="add.jsp">添加</a>
+<a href="add.jsp">添加书籍</a>
+
+<a href="addOrder.jsp">添加到购物车</a>
+
+<a href="creatOrder.jsp">生成订单</a>
 
 </body>
 </html>

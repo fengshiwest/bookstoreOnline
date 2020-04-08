@@ -46,9 +46,46 @@
     </servlet>
 
     <servlet>
-        <servlet-name>addToCart</servlet-name>
-        <servlet-class>com.servlet.AddToCartServlet</servlet-class>
+        <servlet-name>addOrder</servlet-name>
+        <servlet-class>com.servlet.AddOrderServlet</servlet-class>
     </servlet>
+
+    <servlet>
+        <servlet-name>deleteOrder</servlet-name>
+        <servlet-class>com.servlet.DeleteOrderServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>createOrder</servlet-name>
+        <servlet-class>com.servlet.CreatOrderServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>updateOrderBookNum</servlet-name>
+        <servlet-class>com.servlet.UpdateOrderBookNumServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>queryUnfinishedOrder</servlet-name>
+        <servlet-class>com.servlet.QueryUnfinishedOrderServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>queryFinishedOrder</servlet-name>
+        <servlet-class>com.servlet.QueryFinishedOrderServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>queryAllUnfinishedOrder</servlet-name>
+        <servlet-class>com.servlet.QueryAllUnfinishedOrderServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>queryAllFinishedOrder</servlet-name>
+        <servlet-class>com.servlet.QueryAllFinishedOrderServlet</servlet-class>
+    </servlet>
+
+
 
     <servlet-mapping>
         <servlet-name>index</servlet-name>
@@ -91,8 +128,43 @@
     </servlet-mapping>
 
     <servlet-mapping>
-        <servlet-name>addToCart</servlet-name>
-        <url-pattern>/addToCart</url-pattern>
+        <servlet-name>addOrder</servlet-name>
+        <url-pattern>/addOrder</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>deleteOrder</servlet-name>
+        <url-pattern>/deleteOrder</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>createOrder</servlet-name>
+        <url-pattern>/createOrder</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>updateOrderBookNum</servlet-name>
+        <url-pattern>/updateOrderBookNum</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>queryUnfinishedOrder</servlet-name>
+        <url-pattern>/queryUnFinishedOrder</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>queryFinishedOrder</servlet-name>
+        <url-pattern>/queryFinishedOrder</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>queryAllUnfinishedOrder</servlet-name>
+        <url-pattern>/queryAllUnFinishedOrder</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>queryAllFinishedOrder</servlet-name>
+        <url-pattern>/queryAllFinishedOrder</url-pattern>
     </servlet-mapping>
 
 </web-app>

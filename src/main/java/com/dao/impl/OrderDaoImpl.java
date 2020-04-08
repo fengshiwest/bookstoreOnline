@@ -1,13 +1,20 @@
 package com.dao.impl;
 
+import com.dao.BookDao;
 import com.pojo.Book;
 import com.pojo.Orders;
 import com.dao.OrderDao;
+import com.pojo.Users;
+import com.service.impl.BookServiceImpl;
 import com.utils.JDBCUtil;
+import org.apache.commons.dbutils.BasicRowProcessor;
+import org.apache.commons.dbutils.GenerousBeanProcessor;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
+import org.apache.commons.dbutils.handlers.BeanListHandler;
 
 import java.sql.SQLException;
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -15,29 +22,115 @@ import java.util.List;
  */
 public class OrderDaoImpl implements OrderDao {
 
-    public void createOrder(Orders orders) {
-
+    public void addOrder(Users users, Book book, int bookNum) {
         try{
             QueryRunner queryRunner = new QueryRunner(JDBCUtil.getDataSource());
-            String sql = "insert into orders(ID, User_name, User_address, User_tel, User_CID, Book_id, Book_number, Status, Good_price) values(?, ?, ?, ?, ?, ?, ?, ?, ?)";
-            Object param[] = {orders.getId(),orders.getUserName(), orders.getUserAddress(), orders.getUserTel(), orders.getUserCid(), orders.getBookId(), orders.getBookNumber(), orders.getStatus(), orders.getGoodsPrice()};
+            String sql = "insert into orders(ID, User_name, User_address, User_tel, User_CID, Book_id, Book_number, Status, Goods_price) values(?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            Object param[] = {getTimeAsID(),users.getLogname(), "", "", users.getId(), book.getId(), bookNum, 0, book.getPrice()};
             queryRunner.update(sql, param);
 
         }  catch (SQLException e){
             e.printStackTrace();
         }
+    }
 
+    public void deleteOrder(Orders orders) {
+        try {
+            QueryRunner queryRunner = new QueryRunner(JDBCUtil.getDataSource());
+            String sql = "delete from orders where ID = ?";
+            queryRunner.update(sql,orders.getId());
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void changeBookNum(Orders orders, int bookNum) {
+        try{
+            QueryRunner queryRunner = new QueryRunner(JDBCUtil.getDataSource());
+            String sql = "update orders set Book_number=? where id=?";
+            queryRunner.update(sql, bookNum, orders.getId());
+        }  catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+    public void createOrder(Orders orders, String userAddress, String userTel) {
+        try{
+            QueryRunner queryRunner = new QueryRunner(JDBCUtil.getDataSource());
+            String sql = "update orders set User_address=?, User_tel=?, Status=? where id=?";
+            Object param[] = {userAddress, userTel, orders.getId()};
+            queryRunner.update(sql, param);
+
+        }  catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+    public List<Orders> findUnfinishedOrders(String userCID) {
+        try {
+            QueryRunner queryRunner = new QueryRunner(JDBCUtil.getDataSource());
+            String sql = "select * from orders where User_CID = ? and State = 0";
+            return queryRunner.query(sql, new BeanListHandler<Orders>(Orders.class , new BasicRowProcessor(new GenerousBeanProcessor())),userCID);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+    }
+
+    public List<Orders> findFinishedOrders(String userCID) {
+        try {
+            QueryRunner queryRunner = new QueryRunner(JDBCUtil.getDataSource());
+            String sql = "select * from orders where User_CID = ? and State = 1";
+            return queryRunner.query(sql, new BeanListHandler<Orders>(Orders.class , new BasicRowProcessor(new GenerousBeanProcessor())),userCID);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+    }
+
+    public List<Orders> findAllUnfinishedOrders() {
+        try {
+            QueryRunner queryRunner = new QueryRunner(JDBCUtil.getDataSource());
+            String sql = "select * from orders where State = 0";
+            return queryRunner.query(sql, new BeanListHandler<Orders>(Orders.class , new BasicRowProcessor(new GenerousBeanProcessor())));
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+    }
+
+    public List<Orders> findAllFinishedOrders() {
+        try {
+            QueryRunner queryRunner = new QueryRunner(JDBCUtil.getDataSource());
+            String sql = "select * from orders where State = 1";
+            return queryRunner.query(sql, new BeanListHandler<Orders>(Orders.class , new BasicRowProcessor(new GenerousBeanProcessor())));
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
     }
 
     public Orders findOrderByID(String id) {
         try {
             QueryRunner queryRunner = new QueryRunner(JDBCUtil.getDataSource());
             String sql = "select * from orders where ID = ?";
-            return queryRunner.query(sql, id, new BeanHandler<Orders>(Orders.class));
+            return queryRunner.query(sql,new BeanHandler<Orders>(Orders.class, new BasicRowProcessor(new GenerousBeanProcessor())),id);
         } catch (SQLException e) {
             e.printStackTrace();
             throw new RuntimeException(e);
         }
+    }
+
+    public static long getTimeAsID() {
+        Calendar c = Calendar.getInstance();
+        String year=String.valueOf(c.get(Calendar.YEAR));
+        String month = c.get(Calendar.MONTH)+1 > 10 ? String.valueOf(c.get(Calendar.MONTH)+1) : "0" + String.valueOf(c.get(Calendar.MONTH)+1);
+        String day = c.get(Calendar.DAY_OF_MONTH) > 10 ? String.valueOf(c.get(Calendar.DAY_OF_MONTH)) : "0" + c.get(Calendar.DAY_OF_MONTH);
+        String hour = c.get(Calendar.HOUR_OF_DAY) > 10 ? String.valueOf(c.get(Calendar.HOUR_OF_DAY)) : "0" + c.get(Calendar.HOUR_OF_DAY);
+        String minute = c.get(Calendar.MINUTE) > 10 ? String.valueOf(c.get(Calendar.MINUTE)) : "0" + c.get(Calendar.MINUTE);
+        String second = c.get(Calendar.SECOND) > 10 ? String.valueOf(c.get(Calendar.SECOND)) : "0" + c.get(Calendar.SECOND);
+        return Long.parseLong(year + month + day + hour + minute + second);
     }
 
 

@@ -16,6 +16,7 @@ public class Book {
   private String publishName;
   private String publishAddress;
   private long bookNum;
+  private String pictureURL;
 
 
   public long getId() {
@@ -143,4 +144,11 @@ public class Book {
     this.bookNum = bookNum;
   }
 
+  public String getPictureURL() {
+    return pictureURL;
+  }
+
+  public void setPictureURL(String pictureURL) {
+    this.pictureURL = pictureURL;
+  }
 }

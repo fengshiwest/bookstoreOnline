@@ -50,6 +50,7 @@ public class AddBookServlet extends HttpServlet {
             book.setPublishName(request.getParameter("Publish_name"));
             book.setPublishAddress(request.getParameter("Publish_address"));
             book.setBookNum(Long.parseLong(request.getParameter("Book_Num")));
+            book.setPictureURL(request.getParameter("PictureURL"));
 
             BookServiceImpl bookService = new BookServiceImpl();
             bookService.addBook(book);
